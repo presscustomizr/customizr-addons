@@ -1,18 +1,18 @@
 <div class="sharrre-container">
 	<span><?php _e('Share','customizr-addons'); ?></span>
-  <?php if ( tc_is_checked('tc_sharrre-twitter-on') ) : ?>
+  <?php if ( czra_is_checked('tc_sharrre-twitter-on') ) : ?>
 	   <div id="twitter" data-url="<?php echo the_permalink(); ?>" data-text="<?php echo the_title(); ?>" data-title="<?php _e('Tweet', 'customizr-addons'); ?>"><a class="box" href="#"><div class="count" href="#"><i class="fa fa-plus"></i></div><div class="share"><i class="fa fa-twitter"></i></div></a></div>
   <?php endif; ?>
-  <?php if ( tc_is_checked('tc_sharrre-facebook-on') ) : ?>
+  <?php if ( czra_is_checked('tc_sharrre-facebook-on') ) : ?>
 	   <div id="facebook" data-url="<?php echo the_permalink(); ?>" data-text="<?php echo the_title(); ?>" data-title="<?php _e('Like', 'customizr-addons'); ?>"></div>
   <?php endif; ?>
-  <?php if ( tc_is_checked('tc_sharrre-google-on') ) : ?>
+  <?php if ( czra_is_checked('tc_sharrre-google-on') ) : ?>
 	   <div id="googleplus" data-url="<?php echo the_permalink(); ?>" data-text="<?php echo the_title(); ?>" data-title="<?php _e('+1', 'customizr-addons'); ?>"></div>
   <?php endif; ?>
-  <?php if ( tc_is_checked('tc_sharrre-pinterest-on') ) : ?>
+  <?php if ( czra_is_checked('tc_sharrre-pinterest-on') ) : ?>
 	   <div id="pinterest" data-url="<?php echo the_permalink(); ?>" data-text="<?php echo the_title(); ?>" data-title="<?php _e('Pin It', 'customizr-addons'); ?>"></div>
   <?php endif; ?>
-  <?php if ( tc_is_checked('tc_sharrre-linkedin-on') ) : ?>
+  <?php if ( czra_is_checked('tc_sharrre-linkedin-on') ) : ?>
     <div id="linkedin" data-url="<?php echo the_permalink(); ?>" data-text="<?php echo the_title(); ?>" data-title="<?php _e('Publish on Linked In', 'customizr-addons'); ?>"></div>
   <?php endif; ?>
 </div><!--/.sharrre-container-->
@@ -20,7 +20,7 @@
 <script type="text/javascript">
 	// Sharrre
 	jQuery(function($){
-    <?php if ( tc_is_checked('tc_sharrre-twitter-on') ) : ?>
+    <?php if ( czra_is_checked('tc_sharrre-twitter-on') ) : ?>
     		$('#twitter').sharrre({
     			share: {
     				twitter: true
@@ -28,14 +28,14 @@
     			template: '<a class="box" href="#"><div class="count" href="#">{total}</div><div class="share"><i class="fa fa-twitter"></i></div></a>',
     			enableHover: false,
     			enableTracking: true,
-    			buttons: { twitter: {via: '<?php echo esc_attr( TC_utils::$inst->tc_opt( "twitter-username" ) ); ?>'}},
+    			buttons: { twitter: {via: '<?php echo esc_attr( czra_get_opt( "twitter-username" ) ); ?>'}},
     			click: function(api, options){
     				api.simulateClick();
     				api.openPopup('twitter');
     			}
     		});
     <?php endif; ?>
-		<?php if ( tc_is_checked('tc_sharrre-facebook-on') ) : ?>
+		<?php if ( czra_is_checked('tc_sharrre-facebook-on') ) : ?>
         $('#facebook').sharrre({
     			share: {
     				facebook: true
@@ -50,7 +50,7 @@
     			}
     		});
     <?php endif; ?>
-    <?php if ( tc_is_checked('tc_sharrre-google-on') ) : ?>
+    <?php if ( czra_is_checked('tc_sharrre-google-on') ) : ?>
     		$('#googleplus').sharrre({
     			share: {
     				googlePlus: true
@@ -59,14 +59,14 @@
     			enableHover: false,
     			enableTracking: true,
           buttons:{size: 'tall'},
-    			urlCurl: '<?php echo plugins_url( basename( dirname( dirname( __FILE__ ) ) ) ) . "/assets/front/js/sharrre.php"; ?>',
+    			urlCurl: '<?php echo CZRA_BASE_URL . "/assets/front/js/sharrre.php"; ?>',
     			click: function(api, options){
     				api.simulateClick();
     				api.openPopup('googlePlus');
     			}
     		});
     <?php endif; ?>
-    <?php if ( tc_is_checked('tc_sharrre-pinterest-on') ) : ?>
+    <?php if ( czra_is_checked('tc_sharrre-pinterest-on') ) : ?>
     		$('#pinterest').sharrre({
     			share: {
     				pinterest: true
@@ -85,7 +85,7 @@
     			}
     		});
     <?php endif; ?>
-    <?php if ( tc_is_checked('tc_sharrre-linkedin-on') ) : ?>
+    <?php if ( czra_is_checked('tc_sharrre-linkedin-on') ) : ?>
         $('#linkedin').sharrre({
           share: {
             linkedin: true
@@ -104,7 +104,7 @@
           }
         });
     <?php endif; ?>
-		<?php if ( tc_is_checked( 'tc_sharrre-scrollable' ) ) : ?>
+		<?php if ( czra_is_checked( 'tc_sharrre-scrollable' ) ) : ?>
 
 			// Scrollable sharrre bar, contributed by Erik Frye. Awesome!
 			var $_shareContainer = $(".sharrre-container"),
@@ -115,6 +115,7 @@
     			contentBottom    = $_postEntry.offset().top + $_postEntry.outerHeight(),
     			topOfTemplate    = $_header.offset().top,
           topSpacing       = _setTopSpacing();
+
 
       //triggered on scroll
 			shareScroll = function(){
@@ -145,6 +146,7 @@
 			/* As new images load the page content body gets longer. The bottom of the content area needs to be adjusted in case images are still loading. */
 			setTimeout(function() {
 				contentBottom = $_postEntry.offset().top + $_postEntry.outerHeight();
+
 			}, 2000);
 
       //setup event listeners
@@ -165,6 +167,9 @@
 					topSpacing = distanceFromTop;
         return topSpacing;
 			}
+
+      shareScroll();
+      shareMove();
 		<?php endif; ?>
 
 	});
