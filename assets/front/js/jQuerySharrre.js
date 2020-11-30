@@ -45,7 +45,8 @@ var SharrrePlatform = SharrrePlatform || (function () {
         return {
             settings: defaultSettings,
             url: function (test) {
-                return "https://www.linkedin.com/countserv/count/share?format=jsonp&url={url}&callback=?";
+                return '';
+                //return "https://www.linkedin.com/countserv/count/share?format=jsonp&url={url}&callback=?";
             },
             trackingAction: {site: 'linkedin', action: 'share'},
             load: function (self) {
@@ -170,63 +171,6 @@ var SharrrePlatform = SharrrePlatform || (function () {
         };
     });
 
-
-
-    SharrrePlatform.register("googlePlus", function (options) {
-        defaultSettings = {  //http://www.google.com/webmasters/+1/button/
-            url: '',  //if you need to personnalize button url
-            urlCount: false,  //if you want to use personnalize button url on global counter
-            size: 'medium',
-            lang: 'en-US',
-            annotation: '',
-            count: true,
-            popup: {
-                width: 900,
-                height: 500
-            }
-        };
-
-        defaultSettings = $.extend(true, {}, defaultSettings, options);
-        return {
-            settings: defaultSettings,
-            url: function (url) {
-                return url + '?url={url}&type=googlePlus';
-            },
-            trackingAction: {site: 'Google', action: '+1'},
-            load: function (self) {
-                var sett = this.settings;
-                //$(self.element).find('.buttons').append('<div class="button googleplus"><g:plusone size="'+self.options.buttons.googlePlus.size+'" href="'+self.options.url+'"></g:plusone></div>');
-                $(self.element).find('.buttons').append('<div class="button googleplus"><div class="g-plusone" data-size="' +
-                    sett.size + '" data-href="' + (sett.url !== '' ? sett.url : self.options.url) +
-                    '" data-annotation="' + sett.annotation + '"></div></div>');
-                window.___gcfg = {
-                    lang: sett.lang
-                };
-                var loading = 0;
-                if ((typeof gapi === 'undefined' || typeof gapi.plusone === 'undefined') && loading === 0) {
-                    loading = 1;
-                    (function () {
-                        var po = document.createElement('script');
-                        po.type = 'text/javascript';
-                        po.async = true;
-                        po.src = 'https://apis.google.com/js/plusone.js';
-                        var s = document.getElementsByTagName('script')[0];
-                        s.parentNode.insertBefore(po, s);
-                    })();
-                }
-                else {
-                    gapi.plusone.go();
-                }
-            },
-            tracking: function () {
-            },
-            popup: function (opt) {
-                window.open("https://plus.google.com/share?hl=" + this.settings.lang +
-                    "&url=" + encodeURIComponent((this.settings.url !== '' ? this.settings.url : opt.url)),
-                    "", "toolbar=0, status=0, width=" + this.settings.popup.width + ", height=" + this.settings.popup.height);
-            }
-        };
-    });
 
 
     SharrrePlatform.register("pinterest", function (options) {
@@ -426,7 +370,7 @@ var SharrrePlatform = SharrrePlatform || (function () {
             total: 0,  //total of sharing
             shorterTotal: true, //show total by k or M when number is to big
             enableHover: true, //disable if you want to personalize hover event with callback
-            enableCounter: true, //disable if you just want use buttons
+            enableCounter: false, //disable if you just want use buttons
             enableTracking: false, //tracking with google analitycs
             defaultUrl: "javascript:void(0);",
             popup: { // Set the popup width and height
@@ -521,7 +465,7 @@ var SharrrePlatform = SharrrePlatform || (function () {
         });
 
         //click event
-        $(this.element).click(function (e) {
+        $(this.element).on('click', function (e) {
             e.preventDefault();
             self.options.click(self, self.options);
             return false;
@@ -545,7 +489,7 @@ var SharrrePlatform = SharrrePlatform || (function () {
 
     /* getSocialJson methode
      ================================================== */
-    Plugin.prototype.getSocialJson = function (name) {
+    Plugin.prototype.getSocialJson = function(name) {
         var self = this,
             count = 0,
             settings = self.platforms[name].settings,

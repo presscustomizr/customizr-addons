@@ -83,7 +83,7 @@ class CZRA_Sharrre {
       //=> wp_dequeue_style( 'czr-font-awesome' )
       wp_enqueue_style(
           'czr-font-awesome',
-          sprintf('%1$s/assets/front/css/%2$s',
+          sprintf('%1$sassets/front/css/%2$s',
               CZRA_BASE_URL,
               'font-awesome.min.css'
           ),
@@ -94,7 +94,7 @@ class CZRA_Sharrre {
 
     wp_enqueue_script(
       'sharrre',
-      sprintf( '%1$s/assets/front/js/jQuerySharrre%2$s', CZRA_BASE_URL, (defined('TC_DEV') && true === TC_DEV) ? '.js' : '.min.js' ),
+      sprintf( '%1$sassets/front/js/jQuerySharrre%2$s', CZRA_BASE_URL, (defined('TC_DEV') && true === TC_DEV) ? '.js' : '.min.js' ),
       array( 'jquery' ),
       '',
       true
@@ -135,7 +135,6 @@ class CZRA_Sharrre {
             'label'     => __('Enable Twitter Button', 'customizr-addons'),
             'section'   => 'single_posts_sec',
             'type'      => 'checkbox',
-            'notice'    => __('Since Nov. 2015, Twitter disabled the share counts from its API. If you want to get the display count anyway, you can create an account for free (as of Feb. 2016) on [https://opensharecount.com/]. The Customizr Addons plugin is configured to use opensharecount.', 'customizr-addons'),
             'priority'  => 60
       ),
       'tc_twitter-username' => array(
@@ -155,14 +154,6 @@ class CZRA_Sharrre {
             'section'   => 'single_posts_sec',
             'type'      => 'checkbox',
             'priority'  => 80
-      ),
-      'tc_sharrre-google-on' => array(
-            'default'   => 1,
-            'control'   => 'CZR_controls',
-            'label'     => __('Enable Google Plus Button', 'customizr-addons'),
-            'section'   => 'single_posts_sec',
-            'type'      => 'checkbox',
-            'priority'  => 90
       ),
       'tc_sharrre-pinterest-on' => array(
             'default'   => 0,
