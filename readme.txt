@@ -4,8 +4,8 @@ Author URI: http://presscustomizr.com
 Plugin URI: https://github.com/presscustomizr/customizr-addons
 Tags: customizr theme, customizr
 Requires at least: 3.4
-Tested up to: 4.7
-Stable tag: 1.0.1
+Tested up to: 5.6
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,9 +21,13 @@ The Customizr Addons is a WordPress plugin designed specifically for the Customi
 1-bis. Download the plugin, unzip the package and upload it to your /wp-content/plugins/ directory
 2. Activate the plugin
 
-
-
 == Changelog ==
+= 1.1.0 : November 30th, 2020 =
+* removed : [sharrre] Gooogle plus share buttons
+* updated : [sharrre] front counter replaced by a + button
+* updated : [sharrre] front js library
+* successfully tested with WP 5.6
+
 = 1.0.1 : December 6th, 2016 =
 * Update to the latest Customizr version
 * Ensure compatibility with WordPress 4.7
