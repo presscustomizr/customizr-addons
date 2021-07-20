@@ -3,7 +3,7 @@
 * Plugin Name: Customizr Addons
 * Plugin URI: http://presscustomizr.com
 * Description: Lightweight addons plugin for the Customizr WordPress theme.
-* Version: 1.1.1
+* Version: 1.1.2
 * Text Domain: customizr-addons
 * Author: Press Customizr
 * Author URI: http://presscustomizr.com
